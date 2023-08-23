@@ -8,7 +8,7 @@ import Avatar from "react-avatar";
 function Header() {
   return (
     <header>
-      <div className="flex flex-col md:flex-row items-center p-5 bg-gray-500/10 rounded-b-2xl">
+      <div className="flex flex-col md:flex-row items-center p-5 bg-green-500/10 rounded-b-2xl">
         <Image
           className="w-40 md:w-50 pb-10 md:pb-0 object-contain"
           src={p1}
@@ -31,10 +31,9 @@ function Header() {
           <Avatar name="Tracy Z" round size="50" color="#78b5e7" />
         </div>
       </div>
-      <div className="flex items-center justify-center px-5 py-2 md:py-5">
-        <p className="flex items-center p-5 text-sm font-light pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#78b5e7]">
-          <UserCircleIcon className="inline-block h-10 w-10 text-[#78b5e7] mr-1"/>
-          Now counting your tasks of the day...
+      <div className="flex items-center justify-center px-5 md:py-5">
+        <p>
+          <UserCircleIcon />
         </p>
       </div>
     </header>

@@ -8,7 +8,7 @@ import Avatar from "react-avatar";
 function Header() {
   return (
     <header>
-      <div className="flex flex-col md:flex-row items-center p-5 bg-gray-500/10 rounded-b-2xl">
+      <div className="flex flex-col md:flex-row items-center p-5 bg-grey-500/10 rounded-b-2xl">
         <Image
           className="w-40 md:w-50 pb-10 md:pb-0 object-contain"
           src={p1}
