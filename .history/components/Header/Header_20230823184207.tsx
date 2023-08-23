@@ -9,7 +9,7 @@ function Header() {
   return (
     <header>
       <div className="flex flex-col md:flex-row items-center p-5 bg-gray-500/10 rounded-b-2xl">
-        <div className="absolute top-0 left-0 w-full h-4/5 bg-gradient-to-br from-pink-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50" />
+       <div className="absolute top-0 left-0 w-full h-4/5 bg-gradient-to-br from-pink-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50"/>
 
         <Image
           className="w-40 md:w-50 pb-10 md:pb-0 object-contain"
@@ -35,7 +35,7 @@ function Header() {
       </div>
       <div className="flex items-center justify-center px-5 py-2 md:py-5">
         <p className="flex items-center p-5 text-sm font-light pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#78b5e7]">
-          <UserCircleIcon className="inline-block h-10 w-10 text-[#78b5e7] mr-1" />
+          <UserCircleIcon className="inline-block h-10 w-10 text-[#78b5e7] mr-1"/>
           Now counting your tasks of the day...
         </p>
       </div>
