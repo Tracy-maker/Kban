@@ -1,14 +1,11 @@
-'use client'
 import { useBoardStore } from "@/store/BoardStore";
-import { useEffect } from "react";
+import React from "react";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
 function Board() {
   const getBoard = useBoardStore((state) => state.getBoard);
 
-  useEffect(() => {
-    getBoard();
-  }, [getBoard]);
+  useEffect(() => {}, [getBoard]);
   return (
     <h1>Board</h1>
     // <DragDropContext>

@@ -1,4 +1,3 @@
-import { getTodosGroupedByColumn } from "@/lib/getTodosGroupByColumn";
 import { create } from "zustand";
 
 interface BoardState {
