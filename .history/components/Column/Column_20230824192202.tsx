@@ -1,7 +1,6 @@
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import React from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
-import TodoCard from "@/components/TodoCard/TodoCard";
 
 type Props = {
   id: TypedColumn;
