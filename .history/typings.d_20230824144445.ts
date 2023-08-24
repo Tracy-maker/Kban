@@ -1,3 +1,4 @@
+import { Models } from "appwrite";
 
 interface Board {
   columns: Map<TypedColumn, Column>;
