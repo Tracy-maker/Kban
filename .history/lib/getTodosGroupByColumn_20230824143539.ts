@@ -1,5 +1,5 @@
 import { databases } from "@/appwrite";
-import { Board, Column, TypedColumn } from "@/typings";
+import { Column, TypedColumn } from "@/typings";
 
 export const getTodosGroupedByColumn = async () => {
   const data = await databases.listDocuments(
@@ -45,10 +45,4 @@ export const getTodosGroupedByColumn = async () => {
       (a, b) => columnsTypes.indexOf(a[0]) - columnsTypes.indexOf(b[0])
     )
   );
-
-  const board: Board = {
-    columns: sortedColumns,
-  };
-
-  return board;
 };
