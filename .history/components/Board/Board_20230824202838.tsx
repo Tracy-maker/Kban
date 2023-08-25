@@ -46,41 +46,24 @@ function Board() {
     if (!startCol || !finishedCol) return;
 
     if (source.index === destination.index && startCol === finishedCol) return;
-
-    const newTodos = startCol.todos;
-    const [todoMoved] = newTodos.splice(source.index, 1);
-
-    if (startCol.id === finishedCol.id) {
-      newTodos.splice(destination.index, 0, todoMoved);
-      const newCol = {
-        id: startCol.id,
-        todos: newTodos,
-      };
-      const newColumns = new Map(board.columns);
-      newColumns.set(startCol.id, newCol);
-
-      setBoardState({ ...board, columns: newColumns });
-    } else {
-    }
-    return (
-      <DragDropContext onDragEnd={handleOnDragEnd}>
-        <Droppable droppableId="board" direction="horizontal" type="column">
-          {(provided) => (
-            <div
-              className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto"
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-            >
-              {Array.from(board.columns.entries()).map(
-                ([id, column], index) => (
-                  <Column key={id} id={id} todos={column.todos} index={index} />
-                )
-              )}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    );
   };
+  return (
+    <DragDropContext onDragEnd={handleOnDragEnd}>
+      <Droppable droppableId="board" direction="horizontal" type="column">
+        {(provided) => (
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto"
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            {Array.from(board.columns.entries()).map(([id, column], index) => (
+              <Column key={id} id={id} todos={column.todos} index={index} />
+            ))}
+          </div>
+        )}
+      </Droppable>
+    </DragDropContext>
+  );
 }
+
 export default Board;

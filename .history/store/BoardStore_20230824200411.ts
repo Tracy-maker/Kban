@@ -4,7 +4,7 @@ import { create } from "zustand";
 interface BoardState {
   board: Board;
   getBoard: () => void;
-  setBoardState: (board: Board) => void;
+  setBoard: (board: Board) => void;
 }
 
 export const useBoardStore = create<BoardState>((set) => ({
