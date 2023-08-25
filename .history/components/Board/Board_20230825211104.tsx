@@ -75,7 +75,7 @@ function Board() {
         todos: finishTodos,
       });
 
-      setBoardState({ ...board, columns: newColumns });
+      setBoardState({...board, columns: newColumns });
     }
   };
   return (
