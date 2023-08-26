@@ -46,13 +46,10 @@ function Column({ id, todos, index }: Props) {
 
                 <div className="space-y-2">
                   {todos.map((todo, index) => {
-                    if (
-                      searchingString &&
-                      !todo.title
-                        .toLowerCase()
-                        .includes(searchingString.toLowerCase())
-                    )
-                      return null;
+if(
+  searchingString && !todo.title.toLowerCase().includes(searchingString.toLowerCase())
+)
+return null;
 
                     return (
                       <Draggable
