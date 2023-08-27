@@ -14,6 +14,6 @@ const formatTodosForAI = (board: Board) => {
     {} as { [key in TypedColumn]: number }
   );
 
-  return flatArrayCounted;
+  return formatArrayCounted;
 };
 export default formatTodosForAI;
