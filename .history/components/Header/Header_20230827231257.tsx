@@ -8,7 +8,7 @@ import { useBoardStore } from "@/store/BoardStore";
 import fetchSuggestion from "@/lib/fetchSuggesion";
 
 function Header() {
-  const [board, searchString, setSearchString] = useBoardStore((state) => [
+  const [board,searchString, setSearchString] = useBoardStore((state) => [
     state.board,
     state.searchString,
     state.setSearchString,
@@ -58,19 +58,14 @@ function Header() {
           <Avatar name="Tracy Z" round size="50" color="#78b5e7" />
         </div>
       </div>
-      {/* chartGPT facing some trobles */}
-      {/* <div className="flex items-center justify-center px-5 py-2 md:py-5">
+      <div className="flex items-center justify-center px-5 py-2 md:py-5">
         <p className="flex items-center p-5 text-sm font-light pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#78b5e7]">
-          <UserCircleIcon
-            className={`inline-block h-10 w-10 text-[#78b5e7] mr-1 ${
-              loading && "animate-spin"
-            }`}
+          <UserCircleIcon className={`inline-block h-10 w-10 text-[#78b5e7] mr-1 ${loading&& "animate-spin" }`}  
           />
-          {suggestion && !loading
-            ? suggestion
-            : "Now counting your tasks of the day..."}
+          {suggestion && !loading? suggestion:"Now counting your tasks of the day..."}
+          
         </p>
-      </div> */}
+      </div>
     </header>
   );
 }

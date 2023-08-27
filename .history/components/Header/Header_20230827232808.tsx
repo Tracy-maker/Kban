@@ -58,7 +58,6 @@ function Header() {
           <Avatar name="Tracy Z" round size="50" color="#78b5e7" />
         </div>
       </div>
-      {/* chartGPT facing some trobles */}
       {/* <div className="flex items-center justify-center px-5 py-2 md:py-5">
         <p className="flex items-center p-5 text-sm font-light pr-5 shadow-xl rounded-xl w-fit bg-white italic max-w-3xl text-[#78b5e7]">
           <UserCircleIcon

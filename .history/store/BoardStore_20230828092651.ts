@@ -33,11 +33,9 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
     newColumns.get(id)?.todos.splice(taskIndex, 1);
     set({ board: { columns: newColumns } });
-    if (typeof todo.image === 'object' && 'bucketId' in todo.image) {
-      const image = todo.image as { bucketId: string, fileId: string };
-      await storage.deleteFile(image.bucketId, image.fileId);
+    if (typeof todo.image === 'object' && todo.image.bucketId) {
+      await storage.deleteFile(todo.image.bucketId, todo.image.fileId);
     }
-    
     await databases.deleteDocument(
       process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!,
       process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
