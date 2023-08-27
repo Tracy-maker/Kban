@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     ],
   });
   console.log("RESPONSE IS:", response);
-  console.log(response.choices[0].message);
+  console.log(response.choices[0].messages);
 
-  return new Response(response.choices[0].message[0].content);
+  return new Response(response.choices[0].messages[0].content);
 }

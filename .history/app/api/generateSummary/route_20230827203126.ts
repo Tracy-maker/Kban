@@ -24,8 +24,8 @@ export async function POST(request: Request) {
       },
     ],
   });
-  console.log("RESPONSE IS:", response);
-  console.log(response.choices[0].message);
-
-  return new Response(response.choices[0].message[0].content);
+  const data = response.data;
+   console.log("DATA IS:",data);
+   console.log(data.choices[0].messages);
+   return new Response(data.choices[0].messages[0].content);
 }
