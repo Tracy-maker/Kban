@@ -2,7 +2,6 @@
 
 import { useBoardStore } from "@/store/BoardStore";
 import { XCircleIcon } from "@heroicons/react/20/solid";
-import Image from "next/image";
 import { useEffect } from "react";
 import {
   DraggableProvidedDragHandleProps,
@@ -60,10 +59,7 @@ function TodoCard({
         <div className="relative h-full w-full rounded-b-md">
           <Image
             src={imageUrl}
-            alt="Task image"
-            className="w-full object-contain rounded-b-md"
-            height={200}
-            width={400}
+            className="h-full w-full object-cover object-center"
           />
         </div>
       )}
