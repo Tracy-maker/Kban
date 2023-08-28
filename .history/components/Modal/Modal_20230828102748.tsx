@@ -1,10 +1,10 @@
 "use client";
-import {Fragment } from "react";
+import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useModalStore } from "@/store/ModalStore";
 
 function Modal() {
-  let [isOpen, closeModal] = useModalStore((state) => [
+  let [isOpen, closeModal] = useModalStore((state)=>[
     state.isOpen,
     state.closeModal,
   ]);

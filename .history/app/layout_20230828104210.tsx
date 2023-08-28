@@ -19,7 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body suppressHydrationWarning={true} className="bg-[#F5F6F8]">
         {children}
-        <Modal />
+        {/* <Modal /> */}
       </body>
     </html>
   );

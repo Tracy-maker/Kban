@@ -21,7 +21,7 @@ const idToColumnText: {
 
 function Column({ id, todos, index }: Props) {
   const [searchingString] = useBoardStore((state) => [state.searchString]);
-  const openModal = useModalStore((state) => state.openModal);
+  const openModal = useModalStore((state) => [state.openModal]);
 
   return (
     <Draggable draggableId={id} index={index}>

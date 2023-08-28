@@ -1,18 +1,17 @@
 "use client";
-import {Fragment } from "react";
+import { useState, Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { useModalStore } from "@/store/ModalStore";
 
 function Modal() {
-  let [isOpen, closeModal] = useModalStore((state) => [
+  let [isOpen, setIsOpen] = useModalStore((state)=>[
     state.isOpen,
-    state.closeModal,
+    state.setIsOpenƒ
   ]);
 
   return (
     // Use the `Transition` component at the root level
     <Transition show={isOpen} as={Fragment}>
-      <Dialog onClose={closeModal}>
+      <Dialog onClose={() => setIsOpen(false)}>
         {/*
           Use one Transition.Child to apply one transition to the backdrop...
         */}
