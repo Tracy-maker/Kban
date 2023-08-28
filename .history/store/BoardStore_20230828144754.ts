@@ -29,7 +29,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   newTaskInput: "",
   newTaskType: "todo",
   setSearchString: (searchString) => set({ searchString }),
-  image: null,
+
   setBoardState: (board) => set({ board }),
 
   getBoard: async () => {
@@ -58,7 +58,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   setNewTaskInput: (input: string) => set({ newTaskInput: input }),
   setNewTaskType: (columnId: TypedColumn) => set({ newTaskType: columnId }),
-  setImage: (image: File | null) => set({ image }),
+
   updateTodoInDB: async (todo, columnId) => {
     await databases.updateDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,

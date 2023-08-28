@@ -29,7 +29,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   newTaskInput: "",
   newTaskType: "todo",
   setSearchString: (searchString) => set({ searchString }),
-  image: null,
+image: null,
   setBoardState: (board) => set({ board }),
 
   getBoard: async () => {

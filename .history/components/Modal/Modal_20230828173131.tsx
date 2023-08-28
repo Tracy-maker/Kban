@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, Fragment, useRef } from "react";
+import { Fragment, useRef } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useModalStore } from "@/store/ModalStore";
 import { useBoardStore } from "@/store/BoardStore";
@@ -10,15 +10,7 @@ import { PhotoIcon } from "@heroicons/react/20/solid";
 function Modal() {
   const imagePickerRef = useRef<HTMLInputElement>(null);
   const [image, setImage, newTaskInput, setNewTaskInput] = useBoardStore(
-    (state) => [
-      state.image,
-      state.setImage,
-      state.newTaskInput,
-      state.setNewTaskInput,
-      state.image,
-      state.newTaskInput,
-      state.setNewTaskInput,
-    ]
+    (state) => [state.image, state.newTaskInput, state.setNewTaskInput]
   );
 
   const [isOpen, closeModal] = useModalStore((state) => [
@@ -26,21 +18,9 @@ function Modal() {
     state.closeModal,
   ]);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!newTaskInput) return;
-
-    setImage(null);
-    closeModal();
-  };
   return (
     <Transition appear show={isOpen} as={Fragment}>
-      <Dialog
-        as="form"
-        onSubmit={(e) => handleSubmit}
-        className="relative z-10"
-        onClose={closeModal}
-      >
+      <Dialog as="form" className="relative z-10" onClose={closeModal}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"

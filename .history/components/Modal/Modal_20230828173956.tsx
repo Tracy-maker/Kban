@@ -15,10 +15,9 @@ function Modal() {
       state.setImage,
       state.newTaskInput,
       state.setNewTaskInput,
-      state.image,
-      state.newTaskInput,
-      state.setNewTaskInput,
-    ]
+      state.image, 
+      state.newTaskInput, 
+      state.setNewTaskInput]
   );
 
   const [isOpen, closeModal] = useModalStore((state) => [
