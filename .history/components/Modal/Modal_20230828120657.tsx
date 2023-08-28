@@ -57,7 +57,7 @@ function Modal() {
                     className="w-full border border-gray-300 rounded-md outline-none p-5"
                   />
                 </div>
-                <TaskTypeRadioGroup />
+                <TaskTypeRadioGroup/>
               </Dialog.Panel>
             </Transition.Child>
           </div>

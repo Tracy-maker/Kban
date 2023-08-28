@@ -2,16 +2,9 @@
 import { Fragment } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { useModalStore } from "@/store/ModalStore";
-import { useBoardStore } from "@/store/BoardStore";
-import TaskTypeRadioGroup from "../TaskTypeRadioGroup/TaskTypeRadioGroup";
 
 function Modal() {
-  const [newTaskInput, setNewTaskInput] = useBoardStore((state) => [
-    state.newTaskInput,
-    state.setNewTaskInput,
-  ]);
-
-  const [isOpen, closeModal] = useModalStore((state) => [
+  let [isOpen, closeModal] = useModalStore((state) => [
     state.isOpen,
     state.closeModal,
   ]);
@@ -57,7 +50,6 @@ function Modal() {
                     className="w-full border border-gray-300 rounded-md outline-none p-5"
                   />
                 </div>
-                <TaskTypeRadioGroup />
               </Dialog.Panel>
             </Transition.Child>
           </div>
