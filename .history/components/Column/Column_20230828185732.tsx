@@ -20,7 +20,7 @@ const idToColumnText: {
 };
 
 function Column({ id, todos, index }: Props) {
-  const [searchingString, setNewTaskType] = useBoardStore((state) => [
+  const [searchingString,setNewTaskType] = useBoardStore((state) => [
     state.searchString,
     state.setNewTaskType,
   ]);
@@ -29,7 +29,7 @@ function Column({ id, todos, index }: Props) {
   const handleAddTodo = () => {
     setNewTaskType(id);
     openModal();
-  };
+  }
 
   return (
     <Draggable draggableId={id} index={index}>
