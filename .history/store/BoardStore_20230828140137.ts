@@ -56,7 +56,6 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   setNewTaskInput: (input: string) => set({ newTaskInput: input }),
   setNewTaskType: (columnId: TypedColumn) => set({ newTaskType: columnId }),
-  
   updateTodoInDB: async (todo, columnId) => {
     await databases.updateDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,

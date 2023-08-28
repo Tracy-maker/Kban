@@ -1,7 +1,6 @@
 "use client";
 import { useBoardStore } from "@/store/BoardStore";
 import { RadioGroup } from "@headlessui/react";
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import React from "react";
 
 const types = [
@@ -75,13 +74,15 @@ function TaskTypeRadioGroup() {
                               checked ? "text-sky-100" : "text-gray-500"
                             }`}
                           >
-                            <span>{type.description}</span>
+                            <span>
+                              {type.description}
+                            </span>
                           </RadioGroup.Description>
                         </div>
                       </div>
                       {checked && (
                         <div className="shrink-0 text-white">
-                          <CheckCircleIcon className="h-6 w-6" />
+                          <CheckIcon className="h-6 w-6" />
                         </div>
                       )}
                     </div>

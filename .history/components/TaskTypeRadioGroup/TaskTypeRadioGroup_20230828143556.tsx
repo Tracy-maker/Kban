@@ -75,7 +75,9 @@ function TaskTypeRadioGroup() {
                               checked ? "text-sky-100" : "text-gray-500"
                             }`}
                           >
-                            <span>{type.description}</span>
+                            <span>
+                              {type.description}
+                            </span>
                           </RadioGroup.Description>
                         </div>
                       </div>

@@ -1,7 +1,6 @@
 "use client";
 import { useBoardStore } from "@/store/BoardStore";
 import { RadioGroup } from "@headlessui/react";
-import { CheckCircleIcon } from "@heroicons/react/20/solid";
 import React from "react";
 
 const types = [
@@ -33,25 +32,22 @@ function TaskTypeRadioGroup() {
   return (
     <div className="w-full py-5">
       <div className="mx-auto w-full max-w-">
-        <RadioGroup
-          value={newTaskType}
-          onChange={(e) => {
-            setNewTaskType(e);
-          }}
-        >
-          <div className="space-y-2">
-            {types.map((type) => (
+        <RadioGroup value={newTaskType} onChange={(e)=>{
+          setNewTaskType(e);
+        }}>
+        <div className="space-y-2">
+        {plans.map((plan) => (
               <RadioGroup.Option
-                key={type.id}
-                value={type.id}
+                key={plan.name}
+                value={plan}
                 className={({ active, checked }) =>
                   `${
                     active
-                      ? "ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300"
-                      : ""
+                      ? 'ring-2 ring-white ring-opacity-60 ring-offset-2 ring-offset-sky-300'
+                      : ''
                   }
                   ${
-                    checked ? "bg-sky-900 bg-opacity-75 text-white" : "bg-white"
+                    checked ? 'bg-sky-900 bg-opacity-75 text-white' : 'bg-white'
                   }
                     relative flex cursor-pointer rounded-lg px-5 py-4 shadow-md focus:outline-none`
                 }
@@ -64,24 +60,28 @@ function TaskTypeRadioGroup() {
                           <RadioGroup.Label
                             as="p"
                             className={`font-medium  ${
-                              checked ? "text-white" : "text-gray-900"
+                              checked ? 'text-white' : 'text-gray-900'
                             }`}
                           >
-                            {type.name}
+                            {plan.name}
                           </RadioGroup.Label>
                           <RadioGroup.Description
                             as="span"
                             className={`inline ${
-                              checked ? "text-sky-100" : "text-gray-500"
+                              checked ? 'text-sky-100' : 'text-gray-500'
                             }`}
                           >
-                            <span>{type.description}</span>
+                            <span>
+                              {plan.ram}/{plan.cpus}
+                            </span>{' '}
+                            <span aria-hidden="true">&middot;</span>{' '}
+                            <span>{plan.disk}</span>
                           </RadioGroup.Description>
                         </div>
                       </div>
                       {checked && (
                         <div className="shrink-0 text-white">
-                          <CheckCircleIcon className="h-6 w-6" />
+                          <CheckIcon className="h-6 w-6" />
                         </div>
                       )}
                     </div>
@@ -93,7 +93,7 @@ function TaskTypeRadioGroup() {
         </RadioGroup>
       </div>
     </div>
-  );
+  )
 }
 
 export default TaskTypeRadioGroup;
