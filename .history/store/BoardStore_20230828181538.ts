@@ -90,24 +90,6 @@ let file:Image|undefined;
      ...(file && {image:JSON.stringify(file)}),
     } 
   )    
- set({newTaskInput:""});
- set((state)=>{ 
-    const newColumns= newMap(state.board.columns);
-   const newTodo:Todo = {
-    $createdAt: new Date().toISOString(),
-    title:todo,
-    status:columnId,
-    ...(file && {image:file}),
-   };
-   const column = newColumns.get(columnId);  
-
-   if(!column){
-    newColumns.set(columnId,{id:columnId,todos:[newTodo],});
-   }else{
-    newColumns.get(columnId)?.todos.push(newTodo);  
-   }
-
-});
- 
+ set({newTaskInput:""})
 
 }}));

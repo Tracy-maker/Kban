@@ -79,35 +79,4 @@ let file:Image|undefined;
     bucketId:fileUpload.bucketId,
     fileId:fileUpload.$id,
   }}}
-
-  const{$id} = await databases.createDocument(
-    process.env.NEXT_PUBLIC_DATABASE_ID!,
-    process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-    ID.unique(),
-    {
-      title: todo,
-      status: columnId,
-     ...(file && {image:JSON.stringify(file)}),
-    } 
-  )    
- set({newTaskInput:""});
- set((state)=>{ 
-    const newColumns= newMap(state.board.columns);
-   const newTodo:Todo = {
-    $createdAt: new Date().toISOString(),
-    title:todo,
-    status:columnId,
-    ...(file && {image:file}),
-   };
-   const column = newColumns.get(columnId);  
-
-   if(!column){
-    newColumns.set(columnId,{id:columnId,todos:[newTodo],});
-   }else{
-    newColumns.get(columnId)?.todos.push(newTodo);  
-   }
-
-});
- 
-
 }}));

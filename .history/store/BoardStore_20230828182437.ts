@@ -99,14 +99,7 @@ let file:Image|undefined;
     status:columnId,
     ...(file && {image:file}),
    };
-   const column = newColumns.get(columnId);  
-
-   if(!column){
-    newColumns.set(columnId,{id:columnId,todos:[newTodo],});
-   }else{
-    newColumns.get(columnId)?.todos.push(newTodo);  
-   }
-
+   const columnId = newColumns.get(columnId);  
 });
  
 

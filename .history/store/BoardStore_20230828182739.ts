@@ -102,7 +102,7 @@ let file:Image|undefined;
    const column = newColumns.get(columnId);  
 
    if(!column){
-    newColumns.set(columnId,{id:columnId,todos:[newTodo],});
+    newColumns.set(columnId,{id:columnId,todos:[newTodo].});
    }else{
     newColumns.get(columnId)?.todos.push(newTodo);  
    }
