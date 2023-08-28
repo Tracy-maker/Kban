@@ -11,7 +11,7 @@ interface BoardState {
   setSearchString: (searchString: string) => void;
   searchString: string;
   deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void;
-  setNewTaskInput: (input: string) => void;
+  setNewTaskInput: (newTaskInput: string) => void;
 }
 
 export const useBoardStore = create<BoardState>((set, get) => ({
@@ -19,8 +19,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     columns: new Map<TypedColumn, Column>(),
   },
 
-  searchString:"",
-  newTaskInput: "",
+  searchString: "",
   setSearchString: (searchString) => set({ searchString }),
 
   getBoard: async () => {
@@ -46,8 +45,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     );
   },
 
-  setNewTaskInput: (input: string) => set({ newTaskInput: input }),
-
+  setNewTaskInput: (input: string) => set({ newTaskInput:input }),
   updateTodoInDB: async (todo, columnId) => {
     await databases.updateDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,

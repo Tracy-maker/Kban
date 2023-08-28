@@ -34,23 +34,7 @@ function Modal() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
-                <Dialog.Title
-                  as="h3"
-                  className="text-lg font-medium leading-6 pb-2 text-gray-900"
-                >
-                  Add a Task
-                </Dialog.Title>
-                <div className="mt-2">
-                  <input
-                    type="text"
-                    value={newTaskInput}
-                    onChange={(e) => setNewTaskInput(e.target.value)}
-                    placeholder="Enter a task here..."
-                    className="w-full border border-gray-300 rounded-md outline-none p-5"
-                  />
-                </div>
-              </Dialog.Panel>
+              <div className="fixed inset-0 bg-black bg-opacity-25" />
             </Transition.Child>
           </div>
         </div>

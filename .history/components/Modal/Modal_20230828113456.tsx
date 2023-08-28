@@ -43,12 +43,11 @@ function Modal() {
                 </Dialog.Title>
                 <div className="mt-2">
                   <input
-                    type="text"
-                    value={newTaskInput}
-                    onChange={(e) => setNewTaskInput(e.target.value)}
-                    placeholder="Enter a task here..."
-                    className="w-full border border-gray-300 rounded-md outline-none p-5"
-                  />
+                   type="text"
+                   value={newTaskInput}
+                   onChange={(e)=> setNewTaskInput(e.target.value)}
+                   placeholder="Enter a task here..."
+                   className="w-full border border-gray-300 rounded-md outline-none p-5"/>
                 </div>
               </Dialog.Panel>
             </Transition.Child>
