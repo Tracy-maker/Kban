@@ -1,5 +1,4 @@
 'use client'
-import { useBoardStore } from "@/store/BoardStore";
 import React from "react";
 
 const types = [
@@ -24,10 +23,6 @@ const types = [
 ];
 
 function TaskTypeRadioGroup() {
-    const [setNewTaskType, newTaskType] = useBoardStore((state) =>[
-        state.setNewTaskType,
-        state.newTaskType,
-    ]);
   return <div>TaskTypeGroup</div>;
 }
 

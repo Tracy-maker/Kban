@@ -25,12 +25,9 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
   searchString: "",
   newTaskInput: "",
-  newTaskType: "todo",
   setSearchString: (searchString) => set({ searchString }),
-
-  
+  newTaskType: "todo",
   setBoardState: (board) => set({ board }),
-
   getBoard: async () => {
     const board = await getTodosGroupedByColumn();
     set({ board });

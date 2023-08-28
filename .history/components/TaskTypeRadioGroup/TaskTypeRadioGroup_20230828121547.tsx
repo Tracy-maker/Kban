@@ -1,5 +1,3 @@
-'use client'
-import { useBoardStore } from "@/store/BoardStore";
 import React from "react";
 
 const types = [
@@ -20,15 +18,11 @@ const types = [
     name: "Done",
     description: "A task that has been completed",
     color: "bg-green-500",
-  }
+  },
 ];
 
 function TaskTypeRadioGroup() {
-    const [setNewTaskType, newTaskType] = useBoardStore((state) =>[
-        state.setNewTaskType,
-        state.newTaskType,
-    ]);
-  return <div>TaskTypeGroup</div>;
+  return <div></div>;
 }
 
 export default TaskTypeRadioGroup;
