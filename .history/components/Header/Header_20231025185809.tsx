@@ -34,7 +34,7 @@ function Header() {
         <div className="absolute top-0 left-0 w-full h-4/5 bg-gradient-to-br from-pink-400 to-[#0055D1] rounded-md filter blur-3xl opacity-50 -z-50" />
 
         <Image
-          className="w-46 md:w-62 pb-10 md:pb-0 object-contain"
+          className="w-46 md:w-50 pb-10 md:pb-0 object-contain"
           src="https://i.ibb.co/72x6hgk/todolist-Logo.png"
           alt="kanBan Logo"
           width={300}
