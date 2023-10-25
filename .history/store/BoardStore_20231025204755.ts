@@ -10,9 +10,12 @@ interface BoardState {
   newTaskInput: string;
   newTaskType: TypedColumn;
   image: File | null;
+
   setSearchString: (searchString: string) => void;
   searchString: string;
+
   deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void;
+
   setNewTaskInput: (input: string) => void;
   setNewTaskType: (columnId: TypedColumn) => void;
   setImage: (image: File | null) => void;
@@ -107,4 +110,6 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       return { board: { columns: newColumns } };
     });
   },
+
+
 }));

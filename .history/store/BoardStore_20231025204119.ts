@@ -10,9 +10,12 @@ interface BoardState {
   newTaskInput: string;
   newTaskType: TypedColumn;
   image: File | null;
+
   setSearchString: (searchString: string) => void;
   searchString: string;
+
   deleteTask: (taskIndex: number, todoId: Todo, id: TypedColumn) => void;
+
   setNewTaskInput: (input: string) => void;
   setNewTaskType: (columnId: TypedColumn) => void;
   setImage: (image: File | null) => void;
@@ -33,6 +36,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     const board = await getTodosGroupedByColumn();
     set({ board });
   },
+
+  
 
   deleteTask: async (taskIndex: number, todo: Todo, id: TypedColumn) => {
     const newColumns = new Map(get().board.columns);
@@ -65,7 +70,6 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       { title: todo.title, status: columnId }
     );
   },
-
   addTask: async (todo: string, columnId: TypedColumn, image?: File | null) => {
     let file: Image | undefined;
     if (image) {
