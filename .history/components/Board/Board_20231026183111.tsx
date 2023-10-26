@@ -31,7 +31,7 @@ function Board() {
       });
     }
 
-    const columns = Array.from(board.columns);
+    const columns = Array.from(board.columns.entries());
     const startColIndex = columns[Number(source.droppableId)];
     const finishedColIndex = columns[Number(destination.droppableId)];
 

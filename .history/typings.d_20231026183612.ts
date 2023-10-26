@@ -1,4 +1,4 @@
-import { Models } from "appwrite";
+import { Models } from 'appwrite';
 interface TBoard {
   columns: Map<TTypedColumn, TColumn>;
 }

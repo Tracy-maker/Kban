@@ -40,7 +40,7 @@ function Header() {
           width={300}
           height={200}
         />
-        <div className="flex items-center space-x-5 flex-1 justify-end w-full">
+        <div className="flex items-center flex-1 justify-end w-full">
           <form className="flex items-center space-x-5 bg-white rounded-md p-2 shadow-md flex-1 md:flex-initial">
             <MagnifyingGlassIcon className="w-5 h-5 text-gray-500" />
             <input
