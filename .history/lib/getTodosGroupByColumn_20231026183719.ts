@@ -1,5 +1,4 @@
 import { databases } from "@/appwrite";
-import { TBoard, TColumn, TTypedColumn } from "@/typings";
 
 export const getTodosGroupedByColumn = async () => {
   const data = await databases.listDocuments(
@@ -7,6 +6,8 @@ export const getTodosGroupedByColumn = async () => {
     process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!
   );
   const todos = data.documents;
+
+  console.log(todos);
 
   const columns = todos.reduce((acc, todo) => {
     if (!acc.get(todo.status)) {
@@ -27,7 +28,6 @@ export const getTodosGroupedByColumn = async () => {
 
   // if columns doesn't exist, add them with empty todos
   const columnsTypes: TTypedColumn[] = ["todo", "inprogress", "done"];
-  
   for (const columnType of columnsTypes) {
     if (!columns.get(columnType)) {
       columns.set(columnType, {
@@ -45,7 +45,7 @@ export const getTodosGroupedByColumn = async () => {
     )
   );
 
-  const board: TBoard = {
+  const board: Board = {
     columns: sortedColumns,
   };
 
