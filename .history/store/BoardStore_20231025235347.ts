@@ -84,7 +84,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       if (fileUploaded) {
         file = {
           bucketId: fileUploaded.bucketId,
-          fileId: fileUploaded.$id,
+          filedId: fileUploaded.$id,
         };
       }
     }

@@ -30,15 +30,16 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
   searchString: "",
   setSearchString: (searchString) => set({ searchString }),
-
-  newTaskInput: "",
+  
+  newTaskInput: '',
   setNewTaskInput: (newTaskInput) => set({ newTaskInput }),
 
-  newTaskType: "todo",
+  newTaskType: 'todo',
   setNewTaskType: (columnId) => set({ newTaskType: columnId }),
 
   image: null,
   setImage: (image) => set({ image }),
+
 
   setBoardState: (board) => set({ board }),
 
@@ -66,6 +67,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     );
   },
 
+
+ 
   updateTodoInDB: async (todo, columnId) => {
     await databases.updateDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,
@@ -77,7 +80,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
 
   addTask: async (todo, columnId, image) => {
-    let file: Image | undefined;
+    let file: IImage | undefined;
 
     if (image) {
       const fileUploaded = await uploadImage(image);
@@ -89,23 +92,18 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       }
     }
 
-    const { $id } = await databases.createDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-      ID.unique(),
-      {
-        title: todo,
-        status: columnId,
-        // include img if exists
-        ...(file && { image: JSON.stringify(file) }),
-      }
-    );
+    const { $id } = await databases.createDocument(process.env.NEXT_PUBLIC_DATABASE_ID!, process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!, ID.unique(), {
+      title: todo,
+      status: columnId,
+      // include img if exists
+      ...(file && { image: JSON.stringify(file) }),
+    });
 
-    set({ newTaskInput: "" });
+    set({ newTaskInput: '' });
 
     set((state) => {
-      const newColumns = new Map<TypedColumn, Column>(state.board.columns);
-      const newTodo: Todo = {
+      const newColumns = new Map<TTypedColumn, IColumn>(state.board.columns);
+      const newTodo: ITodo = {
         $id,
         $createdAt: new Date().toISOString(),
         title: todo,
@@ -125,4 +123,6 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       return { board: { columns: newColumns } };
     });
   },
+
+
 }));

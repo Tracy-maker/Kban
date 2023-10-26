@@ -29,17 +29,10 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     columns: new Map<TypedColumn, Column>(),
   },
   searchString: "",
-  setSearchString: (searchString) => set({ searchString }),
-
   newTaskInput: "",
-  setNewTaskInput: (newTaskInput) => set({ newTaskInput }),
-
   newTaskType: "todo",
-  setNewTaskType: (columnId) => set({ newTaskType: columnId }),
-
+  setSearchString: (searchString) => set({ searchString }),
   image: null,
-  setImage: (image) => set({ image }),
-
   setBoardState: (board) => set({ board }),
 
   getBoard: async () => {
@@ -66,6 +59,9 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     );
   },
 
+  setNewTaskInput: (input: string) => set({ newTaskInput: input }),
+  setNewTaskType: (columnId: TypedColumn) => set({ newTaskType: columnId }),
+  setImage: (image: File | null) => set({ image }),
   updateTodoInDB: async (todo, columnId) => {
     await databases.updateDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,
@@ -76,15 +72,14 @@ export const useBoardStore = create<BoardState>((set, get) => ({
     );
   },
 
-  addTask: async (todo, columnId, image) => {
+  addTask: async (todo: string, columnId: TypedColumn, image?: File | null) => {
     let file: Image | undefined;
-
     if (image) {
-      const fileUploaded = await uploadImage(image);
-      if (fileUploaded) {
+      const fileUpload = await uploadImage(image);
+      if (fileUpload) {
         file = {
-          bucketId: fileUploaded.bucketId,
-          fileId: fileUploaded.$id,
+          bucketId: fileUpload.bucketId,
+          filedId: fileUpload.$id,
         };
       }
     }
@@ -96,33 +91,29 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       {
         title: todo,
         status: columnId,
-        // include img if exists
         ...(file && { image: JSON.stringify(file) }),
       }
     );
-
     set({ newTaskInput: "" });
 
     set((state) => {
-      const newColumns = new Map<TypedColumn, Column>(state.board.columns);
+      const newColumns = new Map<TypedColumn,Column>(state.board.columns);
       const newTodo: Todo = {
         $id,
         $createdAt: new Date().toISOString(),
         title: todo,
         status: columnId,
-        // include img if exists
         ...(file && { image: file }),
       };
       const column = newColumns.get(columnId);
+
       if (!column) {
-        newColumns.set(columnId, {
-          id: columnId,
-          todos: [newTodo],
-        });
+        newColumns.set(columnId, { id: columnId, todos: [newTodo], });
       } else {
         newColumns.get(columnId)?.todos.push(newTodo);
       }
       return { board: { columns: newColumns } };
     });
   },
+
 }));
