@@ -73,7 +73,6 @@ function Board() {
         id: startCol.id,
         todos: newTodos,
       };
-
       newColumns.set(startCol.id, newCol);
       newColumns.set(finishCol.id, {
         id: finishCol.id,
@@ -85,7 +84,6 @@ function Board() {
       setBoardState({ ...board, columns: newColumns });
     }
   };
-
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="column">
@@ -95,12 +93,9 @@ function Board() {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {Array.from(board.columns.entries()).map(
-              ([id, column]: [any, any], index: number) => (
-                <Column key={id} id={id} todos={column.todos} index={index} />
-              )
-            )}
-            {provided.placeholder}
+            {Array.from(board.columns.entries()).map(([id, column], index) => (
+              <Column key={id} id={id} todos={column.todos} index={index} />
+            ))}
           </div>
         )}
       </Droppable>

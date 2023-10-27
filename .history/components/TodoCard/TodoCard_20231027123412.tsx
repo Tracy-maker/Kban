@@ -5,7 +5,7 @@ import { useBoardStore } from "@/store/BoardStore";
 import { TTodo, TTypedColumn } from "@/typings";
 import { XCircleIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect,useState } from "react";
 import {
   DraggableProvidedDragHandleProps,
   DraggableProvidedDraggableProps,
