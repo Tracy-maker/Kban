@@ -15,7 +15,7 @@ interface TTodo {
   $createdAt: string;
   title: string;
   status: TTypedColumn;
-  image?: TImage;
+  image?: IImage;
 }
 
 interface TImage {
