@@ -1,7 +1,7 @@
 import { ID, databases, storage } from "@/appwrite";
 import { getTodosGroupedByColumn } from "@/lib/getTodosGroupByColumn";
 import uploadImage from "@/lib/uploadImage";
-import { TBoard, TColumn, TImage, TTodo, TTypedColumn } from "@/typings";
+import { TBoard, TImage, TTodo, TTypedColumn } from "@/typings";
 import { create } from "zustand";
 
 interface IBoardState {
@@ -27,7 +27,7 @@ interface IBoardState {
 
 export const useBoardStore = create<IBoardState>((set, get) => ({
   board: {
-    columns: new Map<TTypedColumn, TColumn>(),
+    columns: new Map<TTypedColumn, IColumn>(),
   },
 
   getBoard: async () => {
@@ -57,7 +57,7 @@ export const useBoardStore = create<IBoardState>((set, get) => ({
       if (fileUploaded) {
         file = {
           bucketId: fileUploaded.bucketId,
-          filedId: fileUploaded.$id,
+          fileId: fileUploaded.$id,
         };
       }
     }
@@ -72,8 +72,8 @@ export const useBoardStore = create<IBoardState>((set, get) => ({
     set({ newTaskInput: '' });
 
     set((state) => {
-      const newColumns = new Map<TTypedColumn, TColumn>(state.board.columns);
-      const newTodo: TTodo = {
+      const newColumns = new Map<TTypedColumn, IColumn>(state.board.columns);
+      const newTodo: ITodo = {
         $id,
         $createdAt: new Date().toISOString(),
         title: todo,
@@ -108,7 +108,7 @@ export const useBoardStore = create<IBoardState>((set, get) => ({
     set({ board: { columns: newColumns } });
 
     if (todo.image) {
-      await storage.deleteFile(todo.image.bucketId, todo.image.filedId);
+      await storage.deleteFile(todo.image.bucketId, todo.image.fileId);
     }
 
     await databases.deleteDocument(process.env.NEXT_PUBLIC_DATABASE_ID!, process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!, todo.$id);
