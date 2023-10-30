@@ -37,7 +37,7 @@ function Board() {
     const startColIndex = columns[Number(source.droppableId)];
     const finishedColIndex = columns[Number(destination.droppableId)];
 
-    console.log(startColIndex);
+console.log(startColIndex)
 
     const startCol: TColumn = {
       id: startColIndex[0],
@@ -91,12 +91,10 @@ function Board() {
   return (
     <DragDropContext onDragEnd={handleOnDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="column">
-        {(provided) => (
-          <div
-            className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto"
-            {...provided.droppableProps}
-            ref={provided.innerRef}
-          >
+      {(provided) => (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-7xl mx-auto" 
+          {...provided.droppableProps} 
+          ref={provided.innerRef}>
             {Array.from(board.columns.entries()).map(([id, column], i) => (
               <Column key={id} id={id} todos={column.todos} index={i} />
             ))}

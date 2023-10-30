@@ -32,6 +32,7 @@ function Modal() {
     setImage(null);
     closeModal();
   };
+  
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog

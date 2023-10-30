@@ -1,16 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
+import { MagnifyingGlassIcon, } from "@heroicons/react/20/solid";
 import Avatar from "react-avatar";
 import { useBoardStore } from "@/store/BoardStore";
 
+
 function Header() {
-  const [searchString, setSearchString] = useBoardStore((state) => [
+  const [ searchString, setSearchString] = useBoardStore((state) => [
+   
     state.searchString,
     state.setSearchString,
   ]);
 
+ 
   return (
     <header>
       <div className="flex flex-col md:flex-row items-center p-5 bg-gray-500/10 rounded-b-2xl">
