@@ -5,9 +5,9 @@ import { TBoard, TColumn, TImage, TTodo, TTypedColumn } from "@/typings";
 import { create } from "zustand";
 
 interface IBoardState {
-  board: TBoard;
+  board: IBoard;
   getBoard: () => void;
-  setBoardState: (board: TBoard) => void;
+  setBoardState: (board: IBoard) => void;
 
   searchString: string;
   setSearchString: (searchString: string) => void;
@@ -22,13 +22,13 @@ interface IBoardState {
   setImage: (image: File | null) => void;
 
   addTask: (todo: string, columnId: TTypedColumn, image?: File | null) => void;
-  updateTask: (todo: TTodo, columnId: string) => void;
-  deleteTask: (todoIndex: number, todo: TTodo, id: TTypedColumn) => void;
+  updateTask: (todo: ITodo, columnId: string) => void;
+  deleteTask: (todoIndex: number, todo: ITodo, id: TTypedColumn) => void;
 }
 
 export const useBoardStore = create<IBoardState>((set, get) => ({
   board: {
-    columns: new Map<TTypedColumn, TColumn>(),
+    columns: new Map<TTypedColumn, IColumn>(),
   },
 
   getBoard: async () => {
@@ -51,14 +51,14 @@ export const useBoardStore = create<IBoardState>((set, get) => ({
   setImage: (image) => set({ image }),
 
   addTask: async (todo, columnId, image) => {
-    let file: TImage | undefined;
+    let file: IImage | undefined;
 
     if (image) {
       const fileUploaded = await uploadImage(image);
       if (fileUploaded) {
         file = {
           bucketId: fileUploaded.bucketId,
-          filedId: fileUploaded.$id,
+          fileId: fileUploaded.$id,
         };
       }
     }
@@ -73,8 +73,8 @@ export const useBoardStore = create<IBoardState>((set, get) => ({
     set({ newTaskInput: '' });
 
     set((state) => {
-      const newColumns = new Map<TTypedColumn, TColumn>(state.board.columns);
-      const newTodo: TTodo = {
+      const newColumns = new Map<TTypedColumn, IColumn>(state.board.columns);
+      const newTodo: ITodo = {
         $id,
         $createdAt: new Date().toISOString(),
         title: todo,

@@ -2,7 +2,7 @@ import { ID, databases, storage } from "@/appwrite";
 import { getTodosGroupedByColumn } from "@/lib/getTodosGroupByColumn";
 import uploadImage from "@/lib/uploadImage";
 import { TBoard, TColumn, TImage, TTodo, TTypedColumn } from "@/typings";
-import { create } from "zustand";
+import  create  from "zustand";
 
 interface IBoardState {
   board: TBoard;
@@ -12,18 +12,17 @@ interface IBoardState {
   searchString: string;
   setSearchString: (searchString: string) => void;
 
-  newTaskInput: string;
-  setNewTaskInput: (newTaskInput: string) => void;
+  addTask: (todo: string, columnId: TTypedColumn, image?: File | null) => void;
+  updateTask: (todo: TTodo, columnId: string) => void;
+  deleteTask: (taskIndex: number, todoId: TTodo, id: TTypedColumn) => void;
 
+  newTaskInput: string;
   newTaskType: TTypedColumn;
+  setNewTaskInput: (input: string) => void;
   setNewTaskType: (columnId: TTypedColumn) => void;
 
   image: File | null;
   setImage: (image: File | null) => void;
-
-  addTask: (todo: string, columnId: TTypedColumn, image?: File | null) => void;
-  updateTask: (todo: TTodo, columnId: string) => void;
-  deleteTask: (todoIndex: number, todo: TTodo, id: TTypedColumn) => void;
 }
 
 export const useBoardStore = create<IBoardState>((set, get) => ({
@@ -109,7 +108,7 @@ export const useBoardStore = create<IBoardState>((set, get) => ({
     set({ board: { columns: newColumns } });
 
     if (todo.image) {
-      await storage.deleteFile(todo.image.bucketId, todo.image.fileId);
+      await storage.deleteFile(todo.image.bucketId, todo.image.filedId);
     }
 
     await databases.deleteDocument(process.env.NEXT_PUBLIC_DATABASE_ID!, process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!, todo.$id);
