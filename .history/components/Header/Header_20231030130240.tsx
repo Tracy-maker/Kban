@@ -1,10 +1,10 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { MagnifyingGlassIcon, } from "@heroicons/react/20/solid";
+import { GlobeAsiaAustraliaIcon, MagnifyingGlassIcon, } from "@heroicons/react/20/solid";
 import Avatar from "react-avatar";
 import { useBoardStore } from "@/store/BoardStore";
-
+import fetchSuggestion from "@/lib/fetchSuggesion";
 
 function Header() {
   const [board, searchString, setSearchString] = useBoardStore((state) => [
@@ -13,7 +13,21 @@ function Header() {
     state.setSearchString,
   ]);
 
- 
+  const [loading, setLoading] = useState<boolean>(false);
+  const [suggestion, setSuggestion] = useState<string>("");
+
+  useEffect(() => {
+    if (board.columns.size === 0) return;
+    setLoading(true);
+
+    const fetchSuggestionFunc = async () => {
+      const suggestion = await fetchSuggestion(board);
+      setSuggestion(suggestion);
+      setLoading(false);
+    };
+    fetchSuggestionFunc();
+  }, [board]);
+
   return (
     <header>
       <div className="flex flex-col md:flex-row items-center p-5 bg-gray-500/10 rounded-b-2xl">

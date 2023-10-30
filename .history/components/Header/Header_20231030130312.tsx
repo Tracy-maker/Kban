@@ -1,10 +1,10 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { MagnifyingGlassIcon, } from "@heroicons/react/20/solid";
+import { GlobeAsiaAustraliaIcon, MagnifyingGlassIcon, } from "@heroicons/react/20/solid";
 import Avatar from "react-avatar";
 import { useBoardStore } from "@/store/BoardStore";
-
+import fetchSuggestion from "@/lib/fetchSuggesion";
 
 function Header() {
   const [board, searchString, setSearchString] = useBoardStore((state) => [
