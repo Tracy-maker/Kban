@@ -24,12 +24,7 @@ interface BoardState {
   addTask: (todo: string, columnId: TTypedColumn, image?: File | null) => void;
   updateTask: (todo: TTodo, columnId: string) => void;
   deleteTask: (todoIndex: number, todo: TTodo, id: TTypedColumn) => void;
-  editTask: (
-    todo: TTodo,
-    newTitle: string,
-    newStatus: TTypedColumn,
-    newImage?: File | null
-  ) => void;
+  editTask:(todo:TTodo, newTitle:string, newStatus:TTypedColumn)=> void
 }
 
 export const useBoardStore = create<BoardState>((set, get) => ({
@@ -133,50 +128,5 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
       todo.$id
     );
-  },
-  editTask: async (todo, newTitle, newStatus, newImage) => {
-    let updatedFile: TImage | undefined;
-
-    if (newImage) {
-      const fileUploaded = await uploadImage(newImage);
-      if (fileUploaded) {
-        updatedFile = {
-          bucketId: fileUploaded.bucketId,
-          filedId: fileUploaded.$id,
-        };
-      }
-    }
-
-    await databases.updateDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-      todo.$id,
-      {
-        title: newTitle,
-        status: newStatus,
-        ...(updatedFile && { image: JSON.stringify(updatedFile) }),
-      }
-    );
-
-    set((state) => {
-      const newColumns = new Map(state.board.columns);
-      const column = newColumns.get(todo.status);
-
-      if (column) {
-        const updatedTodos = column.todos.map((t) =>
-          t.$id === todo.$id
-            ? {
-                ...t,
-                title: newTitle,
-                status: newStatus,
-                ...(updatedFile && { image: updatedFile }),
-              }
-            : t
-        );
-        newColumns.set(todo.status, { ...column, todos: updatedTodos });
-      }
-
-      return { board: { columns: newColumns } };
-    });
   },
 }));

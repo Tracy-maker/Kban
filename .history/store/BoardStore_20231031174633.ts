@@ -149,34 +149,7 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
     await databases.updateDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-      todo.$id,
-      {
-        title: newTitle,
-        status: newStatus,
-        ...(updatedFile && { image: JSON.stringify(updatedFile) }),
-      }
+      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!
     );
-
-    set((state) => {
-      const newColumns = new Map(state.board.columns);
-      const column = newColumns.get(todo.status);
-
-      if (column) {
-        const updatedTodos = column.todos.map((t) =>
-          t.$id === todo.$id
-            ? {
-                ...t,
-                title: newTitle,
-                status: newStatus,
-                ...(updatedFile && { image: updatedFile }),
-              }
-            : t
-        );
-        newColumns.set(todo.status, { ...column, todos: updatedTodos });
-      }
-
-      return { board: { columns: newColumns } };
-    });
   },
 }));

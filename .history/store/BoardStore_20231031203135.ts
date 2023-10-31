@@ -175,8 +175,6 @@ export const useBoardStore = create<BoardState>((set, get) => ({
         );
         newColumns.set(todo.status, { ...column, todos: updatedTodos });
       }
-
-      return { board: { columns: newColumns } };
     });
   },
 }));

@@ -163,20 +163,8 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       const column = newColumns.get(todo.status);
 
       if (column) {
-        const updatedTodos = column.todos.map((t) =>
-          t.$id === todo.$id
-            ? {
-                ...t,
-                title: newTitle,
-                status: newStatus,
-                ...(updatedFile && { image: updatedFile }),
-              }
-            : t
-        );
-        newColumns.set(todo.status, { ...column, todos: updatedTodos });
+        const updatedTodos = column.todos.map((t) => t.$id === todo.s);
       }
-
-      return { board: { columns: newColumns } };
     });
   },
 }));

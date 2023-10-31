@@ -30,7 +30,7 @@ function TodoCard({
 }: Props) {
   const deleteTask = useBoardStore((state) => state.deleteTask);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const editTask = useBoardStore((state) => state.editTask);
+  const editTask =useBoardStore((state)=> state.editTask);
 
   useEffect(() => {
     if (todo.image) {
