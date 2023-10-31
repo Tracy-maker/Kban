@@ -38,13 +38,13 @@ export const useBoardStore = create<BoardState>((set, get) => ({
 
   setBoardState: (board) => set({ board }),
 
-  searchString: "",
+  searchString: '',
   setSearchString: (searchString) => set({ searchString }),
 
-  newTaskInput: "",
+  newTaskInput: '',
   setNewTaskInput: (newTaskInput) => set({ newTaskInput }),
 
-  newTaskType: "todo",
+  newTaskType: 'todo',
   setNewTaskType: (columnId) => set({ newTaskType: columnId }),
 
   image: null,
@@ -63,19 +63,14 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       }
     }
 
-    const { $id } = await databases.createDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-      ID.unique(),
-      {
-        title: todo,
-        status: columnId,
-        // include img if exists
-        ...(file && { image: JSON.stringify(file) }),
-      }
-    );
+    const { $id } = await databases.createDocument(process.env.NEXT_PUBLIC_DATABASE_ID!, process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!, ID.unique(), {
+      title: todo,
+      status: columnId,
+      // include img if exists
+      ...(file && { image: JSON.stringify(file) }),
+    });
 
-    set({ newTaskInput: "" });
+    set({ newTaskInput: '' });
 
     set((state) => {
       const newColumns = new Map<TTypedColumn, TColumn>(state.board.columns);
@@ -101,15 +96,10 @@ export const useBoardStore = create<BoardState>((set, get) => ({
   },
 
   updateTask: async (todo, columnId) => {
-    await databases.updateDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-      todo.$id,
-      {
-        title: todo.title,
-        status: columnId,
-      }
-    );
+    await databases.updateDocument(process.env.NEXT_PUBLIC_DATABASE_ID!, process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!, todo.$id, {
+      title: todo.title,
+      status: columnId,
+    });
   },
 
   deleteTask: async (todoIndex, todo, id) => {
@@ -122,10 +112,6 @@ export const useBoardStore = create<BoardState>((set, get) => ({
       await storage.deleteFile(todo.image.bucketId, todo.image.filedId);
     }
 
-    await databases.deleteDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!,
-      todo.$id
-    );
+    await databases.deleteDocument(process.env.NEXT_PUBLIC_DATABASE_ID!, process.env.NEXT_PUBLIC_TODOS_COLLECTION_ID!, todo.$id);
   },
 }));

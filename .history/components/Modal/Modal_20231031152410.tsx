@@ -37,9 +37,9 @@ function Modal() {
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog
         as="form"
-        onSubmit={handleSubmit}
         className="relative z-10"
         onClose={closeModal}
+        onSubmit={handleSubmit}
       >
         <Transition.Child
           as={Fragment}
@@ -71,13 +71,11 @@ function Modal() {
                 >
                   Add a task
                 </Dialog.Title>
-
                 <div className="mt-2">
                   <input
                     type="text"
                     value={newTaskInput}
                     onChange={(e) => setNewTaskInput(e.target.value)}
-                    placeholder="Enter a task here..."
                     className="w-full border border-gray-300 rounded-md outline-none p-5"
                   />
                 </div>
@@ -85,10 +83,11 @@ function Modal() {
 
                 <div>
                   <button
+                    type="button"
                     onClick={() => {
                       imagePickerRef.current?.click();
                     }}
-                    className="w-full border border-gray-300 rounded-md outline-none p-5 focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                    className="w-full border border-gray-300 rounded-md outline-none p-5 focus-viusible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                   >
                     <PhotoIcon className="h-6 w-6 mr-2 inline-block" />
                     Upload Image
@@ -96,16 +95,12 @@ function Modal() {
 
                   {image && (
                     <Image
-                      alt="Uploaded Image"
+                      src={URL.createObjectURL(image)}
+                      alt="uploaded image"
                       width={200}
                       height={200}
-                      className="w-full h-44 object-cover mt-2 filter 
-                      hover:grayscale transition-all duration-150 
-                      cursor-not-allowed"
-                      src={URL.createObjectURL(image)}
-                      onClick={() => {
-                        setImage(null);
-                      }}
+                      onClick={() => setImage(null)}
+                      className="w-full h-44 object-cover mt-2 filter hover:grayscale transition-all duration-150 cursor-not-allowed"
                     />
                   )}
 
@@ -119,6 +114,7 @@ function Modal() {
                     }}
                   />
                 </div>
+
                 <div className="mt-4">
                   <button
                     type="submit"
@@ -136,4 +132,3 @@ function Modal() {
     </Transition>
   );
 }
-export default Modal;

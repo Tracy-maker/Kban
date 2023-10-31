@@ -120,11 +120,7 @@ function Modal() {
                   />
                 </div>
                 <div className="mt-4">
-                  <button
-                    type="submit"
-                    disabled={!newTaskInput}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled: bg-gray-100 disabled:text-gray-300 dsabled:cursor-not-allowed"
-                  >
+                <button type="submit" disabled={!newTaskInput} className="inline-flex justify-center rounded-md border border-transparent bg-blue px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled: bg-gray-100 disabled:text-gray-300 dsabled:cursor-not-allowed">
                     Add Task
                   </button>
                 </div>

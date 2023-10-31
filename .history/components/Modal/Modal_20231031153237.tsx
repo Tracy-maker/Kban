@@ -71,7 +71,6 @@ function Modal() {
                 >
                   Add a task
                 </Dialog.Title>
-
                 <div className="mt-2">
                   <input
                     type="text"
@@ -83,7 +82,7 @@ function Modal() {
                 </div>
                 <TaskTypeRadioGroup />
 
-                <div>
+                <div className="mt-2">
                   <button
                     onClick={() => {
                       imagePickerRef.current?.click();
@@ -100,7 +99,7 @@ function Modal() {
                       width={200}
                       height={200}
                       className="w-full h-44 object-cover mt-2 filter 
-                      hover:grayscale transition-all duration-150 
+                      hover:grayscale transtiton-all duration-150 
                       cursor-not-allowed"
                       src={URL.createObjectURL(image)}
                       onClick={() => {
@@ -119,11 +118,13 @@ function Modal() {
                     }}
                   />
                 </div>
-                <div className="mt-4">
+                <div>
                   <button
                     type="submit"
                     disabled={!newTaskInput}
-                    className="inline-flex justify-center rounded-md border border-transparent bg-blue px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled: bg-gray-100 disabled:text-gray-300 dsabled:cursor-not-allowed"
+                    className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 pb-2
+    text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 disabled:bg-gray-100 disabled:text-gray-300
+    disabled:cursor-not-allowed"
                   >
                     Add Task
                   </button>
