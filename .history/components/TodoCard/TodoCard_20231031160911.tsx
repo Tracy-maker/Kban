@@ -3,7 +3,7 @@
 import getUrl from "@/lib/getUrl";
 import { useBoardStore } from "@/store/BoardStore";
 import { TTodo, TTypedColumn } from "@/typings";
-import { PencilSquareIcon, XCircleIcon } from "@heroicons/react/20/solid";
+import { XCircleIcon } from "@heroicons/react/20/solid";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import {
@@ -46,16 +46,14 @@ function TodoCard({
       {...dragHandleProps}
       ref={innerRef}
     >
-      <div className="flex justify-between items-center p-3">
+      <div className="flex justify-between items-center p-5">
         <p>{todo.title}</p>
-        <div className="flex flex-nowrap">
-          <button onClick={() => deleteTask(index, todo, id)}>
-            <XCircleIcon className=" h-8 w-8 text-red-300 hover:text-red-500" />
-          </button>
-          <button>
-            <PencilSquareIcon className="ml-2 h-8 w-8 text-purple-300 hover:text-purple-600" />
-          </button>
-        </div>
+        <button
+          onClick={() => deleteTask(index, todo, id)}
+          className="text-red-500 hover:text-red-600"
+        >
+          <XCircleIcon className="ml-5 h-8 w-8" />
+        </button>
       </div>
 
       {imageUrl && (

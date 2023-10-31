@@ -46,9 +46,9 @@ function TodoCard({
       {...dragHandleProps}
       ref={innerRef}
     >
-      <div className="flex justify-between items-center p-3">
+      <div className="flex justify-between items-center p-4">
         <p>{todo.title}</p>
-        <div className="flex flex-nowrap">
+        <div>
           <button onClick={() => deleteTask(index, todo, id)}>
             <XCircleIcon className=" h-8 w-8 text-red-300 hover:text-red-500" />
           </button>
