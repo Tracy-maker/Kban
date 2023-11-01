@@ -99,7 +99,7 @@ function Column({ id, todos, index }: Props) {
                       type="button"
                       className="text-green-500 hover:text-green-600"
                     >
-                      <PlusCircleIcon className="h-10 w-10" />
+                      <PlusCircleIcon  className="h-10 w-10" />
                     </button>
                   </div>
                 </div>

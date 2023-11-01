@@ -31,8 +31,6 @@ function TodoCard({
 }: Props) {
   const deleteTask = useBoardStore((state) => state.deleteTask);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
- 
-
 
   useEffect(() => {
     if (todo.image) {
@@ -45,8 +43,9 @@ function TodoCard({
 
   const openModal = useModalStore((state) => state.openModal);
 
- 
-
+  const handleEditTodo = () => {
+    openModal();
+  };
 
   return (
     <div
@@ -59,7 +58,13 @@ function TodoCard({
         <p>{todo.title}</p>
         <div className="flex flex-nowrap">
           <button onClick={() => deleteTask(index, todo, id)}>
-            <XCircleIcon className="ml-1 h-6 w-6 text-red-300 hover:text-red-500" />
+            <XCircleIcon className="ml-1 h-8 w-8 text-red-300 hover:text-red-500" />
+          </button>
+          <button>
+            <PencilSquareIcon
+              onClick={handleEditTodo}
+              className="ml-2 h-8 w-8 text-purple-300 hover:text-purple-600"
+            />
           </button>
         </div>
       </div>

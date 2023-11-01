@@ -31,7 +31,11 @@ function TodoCard({
 }: Props) {
   const deleteTask = useBoardStore((state) => state.deleteTask);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
- 
+  const editTask = useBoardStore((state) => state.editTask);
+
+  const [newTitle, setNewTitle] = useState<string>(todo.title);
+  const [status, setStatus] = useState<string>(todo.status);
+  const [newImage, setNewImage] = useState<string | null>(todo.image);
 
 
   useEffect(() => {
@@ -45,7 +49,16 @@ function TodoCard({
 
   const openModal = useModalStore((state) => state.openModal);
 
- 
+  const handleEditTodo = () => {
+    // Set the new values before calling editTask
+    setNewTitle("new title value");
+    setStatus("new status value");
+    setNewImage("new image value");
+
+    // Call the editTask function
+    editTask(todo, newTitle, status, newImage);
+    openModal();
+  };
 
 
   return (
@@ -60,6 +73,12 @@ function TodoCard({
         <div className="flex flex-nowrap">
           <button onClick={() => deleteTask(index, todo, id)}>
             <XCircleIcon className="ml-1 h-6 w-6 text-red-300 hover:text-red-500" />
+          </button>
+          <button>
+            <PencilSquareIcon 
+              onClick={handleEditTodo}
+              className="ml-2 h-6 w-6 text-purple-300 hover:text-purple-600"
+            />
           </button>
         </div>
       </div>

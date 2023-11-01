@@ -61,6 +61,7 @@ function TodoCard({
           <button onClick={() => deleteTask(index, todo, id)}>
             <XCircleIcon className="ml-1 h-6 w-6 text-red-300 hover:text-red-500" />
           </button>
+         
         </div>
       </div>
 

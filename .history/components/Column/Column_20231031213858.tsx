@@ -96,7 +96,7 @@ function Column({ id, todos, index }: Props) {
                   <div className="flex items-end justify-end p-2">
                     <button
                       onClick={handleAddTodo}
-                      type="button"
+                      type ="add"
                       className="text-green-500 hover:text-green-600"
                     >
                       <PlusCircleIcon className="h-10 w-10" />
